@@ -1,13 +1,47 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println("===== UC6: FIFO vs LIFO (Queue vs Stack) =====");
+
+        String input = "level";
+
+        // Create Queue (FIFO)
+        Queue<Character> queue = new LinkedList<>();
+
+        // Create Stack (LIFO)
+        Stack<Character> stack = new Stack<>();
+
+        // Insert characters into both structures
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+            queue.add(ch);   // Enqueue
+            stack.push(ch);  // Push
+        }
+
+        boolean isPalindrome = true;
+
+        // Compare dequeue (FIFO) and pop (LIFO)
+        while (!queue.isEmpty()) {
+
+            char fromQueue = queue.remove();  // Dequeue
+            char fromStack = stack.pop();     // Pop
+
+            if (fromQueue != fromStack) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Print result
+        if (isPalindrome) {
+            System.out.println(input + " is a Palindrome ✅");
+        } else {
+            System.out.println(input + " is NOT a Palindrome ❌");
+        }
     }
 }
