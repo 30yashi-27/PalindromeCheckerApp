@@ -1,32 +1,35 @@
+import java.util.Stack;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("===== UC4: Palindrome Using Character Array =====");
+        System.out.println("===== UC5: Palindrome Using Stack =====");
 
-        String input = "racecar";
+        String input = "madam";
 
-        // Convert string to character array
-        char[] characters = input.toCharArray();
+        // Create Stack
+        Stack<Character> stack = new Stack<>();
 
-        int start = 0;
-        int end = characters.length - 1;
+        // Push all characters into stack
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
+        }
 
         boolean isPalindrome = true;
 
-        // Two-pointer comparison
-        while (start < end) {
+        // Pop characters and compare
+        for (int i = 0; i < input.length(); i++) {
 
-            if (characters[start] != characters[end]) {
+            char poppedChar = stack.pop();
+
+            if (input.charAt(i) != poppedChar) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
-        // Display result
+        // Print result
         if (isPalindrome) {
             System.out.println(input + " is a Palindrome ✅");
         } else {
