@@ -2,24 +2,35 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("===== UC3: Palindrome Check Using String Reverse =====");
+        System.out.println("===== UC4: Palindrome Using Character Array =====");
 
-        // Original string
-        String original = "level";
+        String input = "racecar";
 
-        // Variable to store reversed string
-        String reversed = "";
+        // Convert string to character array
+        char[] characters = input.toCharArray();
 
-        // Reverse string using for loop
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        int start = 0;
+        int end = characters.length - 1;
+
+        boolean isPalindrome = true;
+
+        // Two-pointer comparison
+        while (start < end) {
+
+            if (characters[start] != characters[end]) {
+                isPalindrome = false;
+                break;
+            }
+
+            start++;
+            end--;
         }
 
-        // Compare original and reversed string
-        if (original.equals(reversed)) {
-            System.out.println(original + " is a Palindrome ✅");
+        // Display result
+        if (isPalindrome) {
+            System.out.println(input + " is a Palindrome ✅");
         } else {
-            System.out.println(original + " is NOT a Palindrome ❌");
+            System.out.println(input + " is NOT a Palindrome ❌");
         }
     }
 }
