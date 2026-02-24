@@ -1,29 +1,37 @@
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("===== UC5: Palindrome Using Stack =====");
+        System.out.println("===== UC6: FIFO vs LIFO (Queue vs Stack) =====");
 
-        String input = "madam";
+        String input = "level";
 
-        // Create Stack
+        // Create Queue (FIFO)
+        Queue<Character> queue = new LinkedList<>();
+
+        // Create Stack (LIFO)
         Stack<Character> stack = new Stack<>();
 
-        // Push all characters into stack
+        // Insert characters into both structures
         for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+            char ch = input.charAt(i);
+            queue.add(ch);   // Enqueue
+            stack.push(ch);  // Push
         }
 
         boolean isPalindrome = true;
 
-        // Pop characters and compare
-        for (int i = 0; i < input.length(); i++) {
+        // Compare dequeue (FIFO) and pop (LIFO)
+        while (!queue.isEmpty()) {
 
-            char poppedChar = stack.pop();
+            char fromQueue = queue.remove();  // Dequeue
+            char fromStack = stack.pop();     // Pop
 
-            if (input.charAt(i) != poppedChar) {
+            if (fromQueue != fromStack) {
                 isPalindrome = false;
                 break;
             }
