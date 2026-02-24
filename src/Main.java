@@ -1,43 +1,36 @@
-import java.util.Queue;
+import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Stack;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("===== UC6: FIFO vs LIFO (Queue vs Stack) =====");
+        System.out.println("===== UC7: Palindrome Using Deque =====");
 
-        String input = "level";
+        String input = "radar";  // Change this string to test other words
 
-        // Create Queue (FIFO)
-        Queue<Character> queue = new LinkedList<>();
+        // Create a Deque
+        Deque<Character> deque = new LinkedList<>();
 
-        // Create Stack (LIFO)
-        Stack<Character> stack = new Stack<>();
-
-        // Insert characters into both structures
+        // Insert all characters into deque (rear insertion)
         for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-            queue.add(ch);   // Enqueue
-            stack.push(ch);  // Push
+            deque.addLast(input.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue (FIFO) and pop (LIFO)
-        while (!queue.isEmpty()) {
+        // Compare front & rear until deque has 0 or 1 element
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
 
-            char fromQueue = queue.remove();  // Dequeue
-            char fromStack = stack.pop();     // Pop
-
-            if (fromQueue != fromStack) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Print result
+        // Display result
         if (isPalindrome) {
             System.out.println(input + " is a Palindrome ✅");
         } else {
